@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from "../components/UI/Button";
+import Button from "./components/UI/Button";
 
 const ResetPassword: React.FC = () => {
   const [email, setEmail] = useState("");
