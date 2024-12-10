@@ -1,17 +1,19 @@
+"use client"
 import React from "react";
-import { useRouter } from 'next/router'; // Next.js router for programmatic navigation
+import { useRouter, usePathname } from "next/navigation"; // Correct import for Next.js App Router
 
 const Navbar: React.FC = () => {
   const router = useRouter();
+  const pathname = usePathname();
 
   const handleNavigation = (url: string) => {
     router.push(url); // Programmatic navigation
   };
 
   return (
-    <nav 
-      className="bg-gray-800 text-white py-4" 
-      role="navigation" 
+    <nav
+      className="bg-gray-800 text-white py-4"
+      role="navigation"
       aria-label="Main Navigation"
     >
       <div className="container mx-auto flex items-center justify-between">
@@ -32,7 +34,9 @@ const Navbar: React.FC = () => {
         <ul className="flex space-x-6">
           <li>
             <span
-              className={`hover:text-gray-400 cursor-pointer ${router.pathname === "/dashboard" ? "text-blue-400 font-semibold" : ""}`}
+              className={`hover:text-gray-400 cursor-pointer ${
+                pathname === "/dashboard" ? "text-blue-400 font-semibold" : ""
+              }`}
               onClick={() => handleNavigation("/dashboard")}
               role="link"
               tabIndex={0}
@@ -46,7 +50,9 @@ const Navbar: React.FC = () => {
           </li>
           <li>
             <span
-              className={`hover:text-gray-400 cursor-pointer ${router.pathname === "/profile" ? "text-blue-400 font-semibold" : ""}`}
+              className={`hover:text-gray-400 cursor-pointer ${
+                pathname === "/profile" ? "text-blue-400 font-semibold" : ""
+              }`}
               onClick={() => handleNavigation("/profile")}
               role="link"
               tabIndex={0}
@@ -60,7 +66,9 @@ const Navbar: React.FC = () => {
           </li>
           <li>
             <span
-              className={`hover:text-gray-400 cursor-pointer ${router.pathname === "/auth/login" ? "text-blue-400 font-semibold" : ""}`}
+              className={`hover:text-gray-400 cursor-pointer ${
+                pathname === "/auth/login" ? "text-blue-400 font-semibold" : ""
+              }`}
               onClick={() => handleNavigation("/auth/login")}
               role="link"
               tabIndex={0}
