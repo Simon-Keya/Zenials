@@ -1,3 +1,4 @@
+"use client"
 import React, { useEffect, useState } from 'react';
 import CreatorCard from '../components/CreatorCard';
 import axios from 'axios';

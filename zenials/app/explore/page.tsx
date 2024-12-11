@@ -13,7 +13,7 @@ const ExplorePage: React.FC = () => {
         <meta name="keywords" content="Zenials, explore, discover creators, trending content" />
       </Head>
       <div className="min-h-screen bg-gray-100">
-        <header className="bg-indigo-600 text-white py-4">
+        <header className="bg-indigo-600 text-gray-300 py-4">
           <h1 className="text-center text-3xl font-bold">Explore Content</h1>
         </header>
         <main className="max-w-6xl mx-auto p-6">

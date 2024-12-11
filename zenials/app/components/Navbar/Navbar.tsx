@@ -1,9 +1,10 @@
 "use client"; // Mark this component as client-side
 
-import React from "react";
+import React, { useState } from "react";
 import { useRouter, usePathname } from "next/navigation"; // Correct import for Next.js App Router
 
 const Navbar: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -11,12 +12,16 @@ const Navbar: React.FC = () => {
     router.push(url); // Programmatic navigation
   };
 
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => !prev);
+  };
+
   return (
-    <nav className="bg-purple-900 text-white py-4" role="navigation" aria-label="Main Navigation">
+    <nav className="bg-blue-900 text-white py-4" role="navigation" aria-label="Main Navigation">
       <div className="container mx-auto flex items-center justify-between">
         {/* Logo on the left */}
         <span
-          className="text-4xl font-bold cursor-pointer text-gray-300"
+          className="text-5xl font-bold cursor-pointer text-gray-300"
           onClick={() => handleNavigation("/")}
           role="link"
           tabIndex={0}
@@ -28,8 +33,21 @@ const Navbar: React.FC = () => {
           Z
         </span>
 
+        {/* Hamburger menu */}
+        <button
+          className="md:hidden text-gray-300 text-2xl focus:outline-none"
+          onClick={toggleMenu}
+          aria-label="Toggle navigation menu"
+        >
+          ☰
+        </button>
+
         {/* Navigation Links */}
-        <ul className="flex space-x-6">
+        <ul
+          className={`${
+            isMenuOpen ? "flex flex-col space-y-4" : "hidden md:flex md:flex-row md:space-x-6"
+          } items-center`}
+        >
           {/* Dashboard Tab */}
           <li>
             <span
@@ -45,6 +63,22 @@ const Navbar: React.FC = () => {
               }}
             >
               Dashboard
+            </span>
+          </li>
+
+          {/* Explore Button */}
+          <li>
+            <span
+              className="bg-red-700 text-white py-2 px-6 rounded-full cursor-pointer transition-all duration-200 hover:bg-red-800"
+              onClick={() => handleNavigation("/explore")}
+              role="link"
+              tabIndex={0}
+              aria-label="Navigate to Explore"
+              onKeyDown={(e) => {
+                if (e.key === "Enter") handleNavigation("/explore");
+              }}
+            >
+              Explore
             </span>
           </li>
 
